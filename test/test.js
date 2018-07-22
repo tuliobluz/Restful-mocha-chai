@@ -1,19 +1,22 @@
-var should = require("should");
 var request = require("request");
-var expect = require("chai").expect;
-var util = require("util");
+var chai = require("chai");
+var chaiHttp = require("chai-http");
+var should = chai.should();
 
 var baseUrl = "https://swapi.co/api"
 
-describe("Returns luke", function () {
+chai.use(chaiHttp);
+
+describe("/GET people", function () {
     it("returns luke", function (done) {
-        request.get({ url: baseUrl + "/people/1/" },
-            function (error, response, body) {
-                var bodyObj = JSON.parse(body);
-                expect(bodyObj.name).to.equal("Luke Skywalker");
-                expect(response.statusCode).to.equal(200);
-                console.log(body);
+        chai.request(baseUrl)
+            .get("/people/1/")
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.have.property("name");
+                res.body.should.be.a("object");
                 done();
-            });
+            }
+        )
     });
 });
