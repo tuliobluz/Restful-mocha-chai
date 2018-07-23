@@ -8,7 +8,7 @@ var baseUrl = "https://swapi.co/api"
 chai.use(chaiHttp);
 
 describe("/GET people", function () {
-    it("Returns luke", function (done) {
+    it("Returns luke - Status 200", function (done) {
         chai.request(baseUrl)
             .get("/people/1/")
             .end((err, res) => {
@@ -22,7 +22,7 @@ describe("/GET people", function () {
 });
 
 describe("/POST person", function () {
-    it("Couldn't create one person", function (done) {
+    it("Couldn't create one person - Status 405", function (done) {
         let person = {
             name: 'Luke Skywalker',
             height: '172',
