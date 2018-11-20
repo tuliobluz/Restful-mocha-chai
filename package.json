@@ -4,15 +4,21 @@
   "description": "test api with mocha and chai",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "test-coverage": "istanbul cover _mocha —- -R spec",
+    "inst": "istanbul cover ./node_modules/mocha/bin/_mocha --root ./ -- --recursive test/todos.test.js",
+    "rootd": "istanbul cover _mocha todos.test.js",
+    "xxx": "istanbul cover _mocha --root ./test"
   },
   "author": "Tulio",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "request": "^2.87.0",
-    "should": "^13.2.1"
+    "should": "^13.2.1",
+    "supertest": "^3.1.0"
   }
 }
